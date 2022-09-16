@@ -27,7 +27,7 @@ abstract class PluginCodelabPlatform extends PlatformInterface {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
-  Future<void> showToastMessage(String message) async {
+  Future<String?> showToastMessage(String message) async {
     throw UnimplementedError('showToastMessage() has not been implemented.');
   }
 }

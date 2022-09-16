@@ -44,7 +44,7 @@ public class PluginCodelabPlugin implements FlutterPlugin, MethodCallHandler {
         String message = (String) arguments.get(0);
         android.widget.Toast.makeText(context, "Pressed key: " + message, Toast.LENGTH_SHORT).show();
         //to send result from java to dart use
-        //result.success(variable you want to send);
+        result.success("Pressed key: " + message);
       } catch (Exception ex) {
         result.error("1", ex.getMessage(), ex.getStackTrace());
       }

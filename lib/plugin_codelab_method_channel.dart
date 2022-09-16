@@ -17,7 +17,7 @@ class MethodChannelPluginCodelab extends PluginCodelabPlatform {
   }
 
   @override
-  Future<void> showToastMessage(String message) async {
-    await methodChannel.invokeMethod<String>("showToastMessage", [message]);
+  Future<String?> showToastMessage(String message) async {
+    return await methodChannel.invokeMethod<String>("showToastMessage", [message]);
   }
 }

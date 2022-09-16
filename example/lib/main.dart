@@ -19,8 +19,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
+  String _pressedKey = "Not Pressed";
   final _pluginCodelabPlugin = PluginCodelab();
-
 
   @override
   void initState() {
@@ -34,8 +34,8 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      platformVersion =
-          await _pluginCodelabPlugin.getPlatformVersion() ?? 'Unknown platform version';
+      platformVersion = await _pluginCodelabPlugin.getPlatformVersion() ??
+          'Unknown platform version';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -51,7 +51,16 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> showToast(String message) async {
-    await _pluginCodelabPlugin.showToastMessage(message);
+    String? result = "Not Pressed";
+    if (await _pluginCodelabPlugin.showToastMessage(message) != null) {
+
+      result = await _pluginCodelabPlugin.showToastMessage(message);
+
+    }
+
+    setState(() {
+      _pressedKey = result!;
+    });
   }
 
   Widget _makeKey({required _KeyType keyType, required int key}) {
@@ -84,6 +93,14 @@ class _MyAppState extends State<MyApp> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Text('Running on: $_platformVersion\n'),
+              Padding(padding: EdgeInsets.all(10.0)),
+              Text(
+                _pressedKey,
+                style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[

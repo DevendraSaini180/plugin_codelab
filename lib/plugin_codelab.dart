@@ -5,7 +5,7 @@ class PluginCodelab {
     return PluginCodelabPlatform.instance.getPlatformVersion();
   }
 
-  Future<void> showToastMessage(String message) {
+  Future<String?> showToastMessage(String message) {
     return PluginCodelabPlatform.instance.showToastMessage(message);
   }
 }
